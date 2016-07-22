@@ -77,7 +77,7 @@ On CentOS 7.x,
 $ sudo yum install python python-devel gcc openssl-devel
 $ sudo yum install epel-release
 $ sudo yum install python-pip
-$ sudo pip install paramiko PyYAML Jinja2 httplib2 six
+$ sudo pip install paramiko PyYAML Jinja2 httplib2 six pycrypto
 ```
 
 ### Install Ansible

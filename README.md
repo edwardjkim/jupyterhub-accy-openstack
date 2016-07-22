@@ -1,8 +1,9 @@
-# JupyterHub deployment for INFO 490
+# JupyterHub deployment for ACCY 570 & 571
 
-This repository contains an Ansible playbook for launching JupyterHub for the
-[Advaned Data Science](https://github.com/UI-DataScience/info490-sp16)
-class at the University of Illinois.
+This repository contains an Ansible playbook for launching JupyterHub for
+ACCY 570: Data Analytics Foundations for Accountancy and
+ACCY 571: Statistical Analyses for Accountancy
+classes at the University of Illinois.
 
 The setup is inspired by [the compmodels class](https://github.com/compmodels/jupyterhub-deploy)
 but there are some major differences:
@@ -48,8 +49,8 @@ In most cases this will work better than on the open Internet.
 ### Clone Git repository
 
 ```shell
-$ git clone https://github.com/edwardjkim/jupyterhub-info490
-$ cd jupyterhub-info490
+$ git clone https://github.com/edwardjkim/jupyterhub-accounting
+$ cd jupyterhub-accounting
 ```
 
 ### Install Docker
@@ -70,10 +71,12 @@ $ sudo service docker start
 
 ### Install Python modules
 
-On Scientific Linux,
+On CentOS 7.x,
 
 ```shell
-$ sudo yum install python python-devel python-pip
+$ sudo yum install python python-devel gcc openssl-devel
+$ sudo yum install epel-release
+$ sudo yum install python-pip
 $ sudo pip install paramiko PyYAML Jinja2 httplib2 six
 ```
 
@@ -86,7 +89,7 @@ $ source ./hacking/env-setup
 ```
 
 If you log out of a session, you have to do `source ./hacking/env-setup` again
-when you log back in, so you might want to add `source ./hacking/env-setup` to
+when you log back in, so you might want to add `cd ./ansible && source ./hacking/env-setup` to
 `.bashrc`.
 
 ### Configuration variables

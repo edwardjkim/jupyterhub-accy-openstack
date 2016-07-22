@@ -61,4 +61,3 @@ certificates
 vault-password
 old
 certificates.bak
-host_vars/

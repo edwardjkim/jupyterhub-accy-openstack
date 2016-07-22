@@ -5,6 +5,8 @@ ACCY 570: Data Analytics Foundations for Accountancy and
 ACCY 571: Statistical Analyses for Accountancy
 classes at the University of Illinois.
 
+See also the [INFO490 setup](https://github.com/EdwardJKim/jupyterhub-info490).
+
 The setup is inspired by [the compmodels class](https://github.com/compmodels/jupyterhub-deploy)
 but there are some major differences:
 
@@ -16,8 +18,7 @@ but there are some major differences:
     we change the ownership of the files on the host system to the `jupyter` user and mount
     the appropriate directory onto the
     [singleuser Docker image](https://github.com/jupyter/dockerspawner/tree/master/singleuser).
-4.  Tested on Scientific Linux. Should in principle work on any Fedora-based flavors such as CentOS.
-    For Ubuntu, check out the `ubuntu` branch.
+4.  CentOS, instead of Ubuntu.
 
 ## Overview
 

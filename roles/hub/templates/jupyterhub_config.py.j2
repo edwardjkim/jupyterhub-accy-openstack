@@ -9,8 +9,6 @@ c.JupyterHub.log_level = 'INFO'
 
 c.JupyterHub.db_url = 'sqlite:////srv/jupyterhub/jupyterhub.sqlite'
 
-c.JupyterHub.log_file = "/srv/jupyterhub/jupyterhub.log"
-
 c.JupyterHub.admin_access = True
 
 c.JupyterHub.authenticator_class = 'remote_user_auth.RemoteUserAuthenticator'
@@ -24,6 +22,8 @@ c.Authenticator.whitelist = whitelist = set()
 c.JupyterHub.proxy_api_ip = '0.0.0.0'
 c.JupyterHub.hub_ip = '0.0.0.0'
 c.DockerSpawner.hub_ip_connect = os.environ['HUB_IP']
+
+c. JupyterHub.confirm_no_ssl = True
 
 c.JupyterHub.spawner_class = 'swarmspawner.SwarmSpawner'
 c.DockerSpawner.container_image = 'singleuser'

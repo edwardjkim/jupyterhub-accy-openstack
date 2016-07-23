@@ -1,6 +1,6 @@
 ---
 - name: install nfs pakcages
-  yum: name=nfs-utils,nfs-utils-lib state=latest
+  yum: name=nfs-utils,libnfsidmap state=latest
 
 - name: unmount home
   shell: umount /home || true

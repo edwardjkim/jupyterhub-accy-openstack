@@ -26,7 +26,7 @@
   - vars.yml
   roles:
   - nfs_server
-  - duplicity
+#  - duplicity
 
 - hosts:
   - jupyterhub_nodes
@@ -54,7 +54,7 @@
   roles:
   - singleuser
   tags:
-  - signleuser
+  - singleuser
 
 - hosts: 
   - jupyterhub_host

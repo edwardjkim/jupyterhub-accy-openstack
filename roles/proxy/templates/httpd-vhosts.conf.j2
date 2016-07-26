@@ -1,11 +1,11 @@
 # https://github.com/jupyter/jupyterhub/issues/219
 <VirtualHost *:80>
-    ServerName {{ ansible_host }}
-    Redirect permanent / https://{{ ansible_host }}/
+    ServerName {{ fqdn }}
+    Redirect permanent / https://{{ fqdn }}/
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName {{ ansible_host }}
+    ServerName {{ fqdn }}
     SSLEngine On
     SSLCertificateFile {{ site_cert_path }}/ca.crt
     SSLCertificateKeyFile {{ site_key_path }}/ca.key

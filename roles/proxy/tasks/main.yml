@@ -59,6 +59,12 @@
 - name: copy the splash page
   template: src=index.html.j2 dest=/srv/httpd/index.html
 
+- name: copy style.css
+  copy: src=style.css dest=/srv/httpd/style.css
+
+- name: copy the logo image
+  copy: src=EY.gif dest=/srv/httpd/EY.gif
+
 - name: install docker-compose.yml
   template: src=docker-compose.yml dest=/root/docker-compose.yml
 

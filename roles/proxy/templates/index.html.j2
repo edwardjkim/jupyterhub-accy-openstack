@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>ACCY Jupyterhub</title>
-	</head>
-	<body>
-          <div>
-          Welcome to Jupyterhub server for ACCY 570/571.<br>
-          This server is sponsored by Ernst & Young.<br>
-          <a href="http://www.ey.com/">
-            <img src="http://www.ey.com/ecimages/EY.gif" alt="Ernst & Young" align="middle">
-          </a>
-          </div>
-          <div>
-          Click the button to use the notebook server. You may need to authenticate with Shibboleth.<br>
-          <form action="https://{{ fqdn }}/hub/login">
-              <input type="submit" value="Go to Jupyterhub">
-          </form>
-          </div>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ACCY Jupyterhub</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  
+  <body>
+    <div>
+      <h2>
+      Jupyterhub server for ACCY 570/571
+      </h2>
+      <br>
+      Funding for the purchase and operation of this server was generously provided by
+      <br>
+      <a href="http://www.ey.com/">
+        <img src="EY.gif" alt="Ernst & Young" align="middle">
+      </a>
+    </div>
+    <div>
+      <br>
+      Click the button below to access the notebook server. You may need to authenticate with Shibboleth.
+      <br>
+      <a href="https://{{ fqdn }}/hub/login"><button>Go to Jupyterhub</button></a>
+    </div>
+  </body>
 </html>

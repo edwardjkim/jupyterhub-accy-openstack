@@ -18,6 +18,11 @@ h2 {
   padding-top: 1em;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 button {
     background-color: #4CAF50; /* Green */
     border: none;

@@ -10,7 +10,7 @@
 	     space-separated, in REMOTE_USER. The first attribute in
 	     your list that is sent by the IDP will be used.
 	 -->
-	<ApplicationDefaults entityID="https://{{ ansible_host }}/shibboleth"
+	<ApplicationDefaults entityID="https://{{ fqdn }}/shibboleth"
 	    REMOTE_USER="eppn">
 		<!--
 		     Lifetime is the max length of a session in seconds.

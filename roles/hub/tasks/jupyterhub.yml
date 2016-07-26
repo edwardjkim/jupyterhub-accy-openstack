@@ -14,9 +14,6 @@
 - name: create the remote user authenticator script
   copy: src=remote_user_auth.py dest=/srv/jupyterhub/remote_user_auth.py
 
-- name: create the dummy authenticator script
-  copy: src=dummyauthenticator.py dest=/srv/jupyterhub/dummyauthenticator.py
-
 - name: copy swarm spawner script
   copy: src=swarmspawner.py dest=/srv/jupyterhub/swarmspawner.py
 

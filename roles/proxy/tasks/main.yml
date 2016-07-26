@@ -56,6 +56,9 @@
 #- name: Shibboleth SSL key
 #  template: src=shib.key.j2 dest=/srv/httpd/sp-key.pem mode=0600 group=root owner=root
 
+- name: copy the splash page
+  template: src=index.html.j2 dest=/srv/httpd/index.html
+
 - name: install docker-compose.yml
   template: src=docker-compose.yml dest=/root/docker-compose.yml
 

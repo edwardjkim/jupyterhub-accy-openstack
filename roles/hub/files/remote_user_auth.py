@@ -40,6 +40,12 @@ class RemoteUserAuthenticator(Authenticator):
     def authenticate(self, *args):
         raise NotImplementedError()
 
+    def logout_url(self, base_url):
+        """
+        There is nowhere to log out, so point to /.
+        """
+        return '/'
+
 
 class LocalRemoteUserAuthenticator(LocalAuthenticator, RemoteUserAuthenticator):
 

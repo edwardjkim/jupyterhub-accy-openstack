@@ -63,6 +63,8 @@
   - vars.yml
   roles:
   - hub
+  tags:
+  - hub
 
 - hosts:
   - proxy

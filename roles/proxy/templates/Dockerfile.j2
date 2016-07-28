@@ -8,7 +8,9 @@ RUN yum -y update && \
         http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo && \
     yum -y install httpd shibboleth.x86_64 libcurl-openssl libcurl-openssl-devel && \
     chmod +x /etc/shibboleth/shibd-redhat && \
-    yum -y install mod_ssl
+    yum -y install mod_ssl && \
+    # http://esoterica.itcs.illinois.edu/linux/packages/uiuc-intermediates.html
+    yum -y install --nogpgcheck http://esoterica.itcs.illinois.edu/linux/packages/ca-chained-bundle-latest.noarch.rpm
 
 RUN cd /etc/httpd/conf && \
     echo 'UseCanonicalName On' >> httpd.conf && \

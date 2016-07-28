@@ -9,6 +9,12 @@
     SSLEngine On
     SSLCertificateFile {{ site_cert_path }}/ca.crt
     SSLCertificateKeyFile {{ site_key_path }}/ca.key
+ 
+    #per Technology Service Security: 
+    SSLOptions StrictRequire
+    SSLProtocol All -SSLv2 -SSLv3
+    SSLHonorCipherOrder on
+    SSLCipherSuite 'AES128+EECDH:AES128+EDH:ECDH+AES+HIGH:EDH+AES+HIGH:3DES+RSA+SHA+HIGH:AES+RSA+HIGH'
 
     ProxyRequests Off
     SSLProxyEngine On

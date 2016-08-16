@@ -17,7 +17,8 @@ class SwarmSpawner(DockerSpawner):
 
     container_ip = '0.0.0.0'
 
-    singleuser = Unicode('jupyter', config=True)
+    singleuser = Unicode('jovyan', config=True)
+    hostname = Unicode('jupyter', config=True)
 
     @gen.coroutine
     def lookup_node_name(self):
@@ -52,6 +53,7 @@ class SwarmSpawner(DockerSpawner):
             extra_create_kwargs = {}
         if 'working_dir' not in extra_create_kwargs:
             extra_create_kwargs['working_dir'] = "/home/{}".format(self.singleuser)
+            extra_create_kwargs['hostname'] = self.hostname
 
         # start the container
         yield DockerSpawner.start(

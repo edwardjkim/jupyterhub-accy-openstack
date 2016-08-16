@@ -65,6 +65,9 @@
 - name: copy the logo image
   copy: src=EY.gif dest=/srv/httpd/EY.gif
 
+- name: copy the favicon
+  copy: src=EYlogo.ico dest=/srv/httpd/EYlogo.ico
+
 - name: install docker-compose.yml
   template: src=docker-compose.yml dest=/root/docker-compose.yml
 

@@ -26,12 +26,18 @@
   - vars.yml
   roles:
   - nfs_server
-#  - duplicity
+  - duplicity
+  tags:
+  - nfs
 
 - hosts:
   - jupyterhub_nodes
+  vars_files:
+  - vars.yml
   roles:
   - nfs_client
+  tags:
+  - nfs
 
 - hosts:
   - jupyterhub_host

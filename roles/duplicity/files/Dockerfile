@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:14.04
 
 MAINTAINER Edward J Kim <edward.junhyung.kim@gmail.com>
 
@@ -11,10 +11,14 @@ RUN apt-get update && \
         python-dev \
         python-pip \
         librsync-dev \
+        libffi-dev \
+        libssl-dev \
     && \
     apt-get clean
 
-RUN pip install \
+RUN pip install pip --upgrade && \
+    pip install \
+        cryptography \
         paramiko \
         pycrypto \
         boto \

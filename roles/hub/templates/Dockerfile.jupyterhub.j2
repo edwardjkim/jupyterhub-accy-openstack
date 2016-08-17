@@ -12,7 +12,6 @@ RUN mkdir /srv/jupyterhub_config
 WORKDIR /srv/jupyterhub_config
 
 ADD remote_user_auth.py /srv/jupyterhub_config/remote_user_auth.py
-ADD dummyauthenticator.py /srv/jupyterhub_config/dummyauthenticator.py
 ADD swarmspawner.py /srv/jupyterhub_config/swarmspawner.py
 ADD jupyterhub_config.py /srv/jupyterhub_config/jupyterhub_config.py
 

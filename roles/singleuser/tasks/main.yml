@@ -5,17 +5,11 @@
 - name: copy the Dockerfile to the singleuser directory
   template: src=Dockerfile.singleuser.j2 dest=/srv/singleuser/Dockerfile
 
-- name: copy singleuser.sh to the singleuser directory
-  copy: src=singleuser.sh dest=/srv/singleuser/singleuser.sh
-
-- name: copy logo.png
-  copy: src=logo.png dest=/srv/singleuser/logo.png
-
-- name: copy custom.css
-  copy: src=custom.css dest=/srv/singleuser/custom.css
+- name: copy nbgrader_config.py
+  copy: src=nbgrader_config.py dest=/srv/singleuser/nbgrader_config.py
 
 - name: pull lcdm/accy image
   shell: docker pull lcdm/accy
 
 - name: build singleuser image
-  shell: docker build -t singleuser /srv/singleuser
+  shell: docker build -t singleuser --no-cache /srv/singleuser

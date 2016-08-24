@@ -2,12 +2,15 @@ FROM lcdm/accy
 
 USER root
 
+ADD nbgrader_config.py /opt/conda/etc/jupyter/nbgrader_config.py
+
+RUN pip install git+https://github.com/EdwardJKim/nbgrader && \
+    nbgrader extension install
+
 CMD ["start-singleuser.sh"]
 
-USER data_scientist
+USER $NB_USER
+ENV TZ America/Chicago
 
-RUN mkdir -p /home/$NB_USER/.jupyter/custom
-ADD logo.png /home/$NB_USER/.jupyter/custom/logo.png
-ADD custom.css /home/$NB_USER/.jupyter/custom/custom.css
+ENV PYTHONPATH "/home/$NB_USER/.accy/rubric:$PYTHONPATH"
 
-ENV PYTHONPATH /home/data_scientist/.info490/rubric

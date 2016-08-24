@@ -1,0 +1,35 @@
+---
+- name: create /srv/cron directory
+  file: path=/srv/cron state=directory
+  tags:
+  - cron
+
+- name: copy crontab
+  template: src=crontab.j2 dest=/srv/cron/crontab
+  tags:
+  - cron
+
+- name: copy release_assignment script
+  copy: src=release_assignment.py dest=/srv/cron/release_assignment.py
+  tags:
+  - cron
+
+- name: copy Dockerfile for jupyterhub
+  copy: src=Dockerfile dest=/srv/cron/Dockerfile
+  tags:
+  - cron
+
+- name: stop and remove cron container
+  command: docker rm -f root_cron_1
+  tags:
+  - cron
+
+- name: bulid cron image
+  command: docker build -t cron /srv/cron
+  tags:
+  - cron
+
+- name: run cron container
+  command: docker run -d --name root_cron_1 -v /export:/export cron
+  tags:
+  - cron

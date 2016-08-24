@@ -1,0 +1,7 @@
+TZ=America/Chicago
+*/20 * * * * root cd /export/shared/accy570-fa16 && /usr/bin/git pull origin master 2>&1 | ts "\%F \%T" >> /var/log/cron.log
+*/20 * * * * root cd /export/shared/accy571-fa16 && /usr/bin/git pull origin master 2>&1 | ts "\%F \%T" >> /var/log/cron.log
+01 18 * * 2 root tar cvzf /export/assignments.$(date +\%Y\%m\%d\%H\%M\%S).tar.gz /export/exchange/*/inbound 2>&1 | ts "\%F \%T" >> /var/log/cron.log
+01 18 * * 5 root tar cvzf /export/assignments.$(date +\%Y\%m\%d\%H\%M\%S).tar.gz /export/exchange/*/inbound 2>&1 | ts "\%F \%T" >> /var/log/cron.log
+# An empty line is required at the end of this file for a valid cron file.
+

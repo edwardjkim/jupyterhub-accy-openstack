@@ -4,6 +4,7 @@
     Redirect permanent / https://{{ fqdn }}/
 </VirtualHost>
 
+Listen 443
 <VirtualHost *:443>
     ServerName {{ fqdn }}
     SSLEngine On

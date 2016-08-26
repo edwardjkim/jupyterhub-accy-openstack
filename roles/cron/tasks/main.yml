@@ -20,7 +20,7 @@
   - cron
 
 - name: stop and remove cron container
-  command: docker rm -f root_cron_1
+  shell: docker ps | grep root_cron_1 > /dev/null && docker rm -f root_cron_1 || true
   tags:
   - cron
 

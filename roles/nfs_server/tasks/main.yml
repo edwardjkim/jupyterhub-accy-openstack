@@ -52,7 +52,7 @@
   - add_users
 
 - name: create exchange/inbound directories
-  file: path=/mnt/volume/exchange/{{ item }}/accy/inbound state=directory group=root owner=root mode=0733
+  file: path=/mnt/volume/exchange/{{ item }}/accy/inbound state=directory group=root owner=root mode=0733 recurse=yes
   with_items:
   - "{{ jupyterhub_admins }}"
   - "{{ jupyterhub_users }}"
@@ -60,12 +60,13 @@
   - add_users
 
 - name: create exchange/outbound directories
-  file: path=/mnt/volume/exchange/{{ item }}/accy/outbound state=directory group=root owner=root mode=0755
+  file: path=/mnt/volume/exchange/{{ item }}/accy/outbound state=directory group=root owner=root mode=0755 recurse=yes
   with_items:
   - "{{ jupyterhub_admins }}"
   - "{{ jupyterhub_users }}"
   tags:
   - add_users
+  - test
 
 - name: create shared directory
   file: path=/mnt/volume/shared state=directory group=root owner=root recurse=yes

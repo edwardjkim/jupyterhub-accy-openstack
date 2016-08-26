@@ -1,14 +1,17 @@
 #!/usr/bin/env python
-
 from __future__ import print_function
 import os
 import sys
 import shutil
 
+
 class ReleaseAssignment(object):
 
     def __init__(self, dir_name):
+        self.course_id = 'accy'
+        self.export_root = '/export'
         self.dir_name = dir_name
+        self.student_list = '/srv/jupyterhub_users/studentlist'
 
     @property
     def hw_dir(self):
@@ -47,10 +50,29 @@ class ReleaseAssignment(object):
             not self.is_warning_a_file()):
             return True
 
-    def copy(self, target_path):
+    @property
+    def students(self):
+        names = []
+        with open(self.student_list) as f:
+            for line in f:
+                if line.isspace():
+                    continue
+                parts = line.strip().split()
+                name = parts[0]
+                names.append(name)
+        return names
+
+    def copy(self, assignment):
         if self.is_ready():
-            shutil.copytree(self.hw_dir, target_path)
-            sys.stdout.write("Released assignments from {}\n".format(self.hw_dir))
+            for student in self.students:
+                target_path = os.path.join(
+                    self.export_root, 'exchange', student,
+                    self.course_id, 'outbound'
+                )
+                shutil.copytree(self.hw_dir, target_path)
+                sys.stdout.write(
+                    "Released assignments from {}\n".format(self.hw_dir)
+                )
         else:
             raise RuntimeError("Not ready yet.")
 
@@ -68,7 +90,7 @@ if __name__ == '__main__':
         arg1 = sys.argv[1]
         arg2 = sys.argv[2]
     except IndexError:
-        sys.stderr.write("Usage: release_assignment.py </path/to/WeekX> </shared/outbound/due_Aug_01_assignments01>\n")
+        sys.stderr.write("Usage: release_assignment.py </path/to/WeekX> <hw01>\n")
         sys.exit(1)
 
     main(arg1, arg2)

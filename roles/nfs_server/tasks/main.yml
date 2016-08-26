@@ -43,7 +43,7 @@
   tags:
   - add_users
 
-- name: create exchange/inbound directories
+- name: create exchange directories
   file: path=/mnt/volume/exchange/{{ item }}/accy state=directory group=100 owner=1000 recurse=yes
   with_items:
   - "{{ jupyterhub_admins }}"
@@ -59,6 +59,14 @@
   tags:
   - add_users
 
+- name: create exchange/outbound directories
+  file: path=/mnt/volume/exchange/{{ item }}/accy/outbound state=directory group=root owner=root mode=0755
+  with_items:
+  - "{{ jupyterhub_admins }}"
+  - "{{ jupyterhub_users }}"
+  tags:
+  - add_users
+
 - name: create shared directory
   file: path=/mnt/volume/shared state=directory group=root owner=root recurse=yes
 
@@ -67,9 +75,6 @@
 
 - name: git clone accy571 repo
   git: repo=https://github.com/ui-datascience/accy571-fa16 dest=/mnt/volume/shared/accy571-fa16
-
-- name: create outbound directory
-  file: path=/export/shared/outbound state=directory group=root owner=root mode=0755
 
 - name: start nfs-server
   service: name=nfs state=started

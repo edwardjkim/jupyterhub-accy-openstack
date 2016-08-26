@@ -39,8 +39,7 @@ c.DockerSpawner.volumes = {
 c.DockerSpawner.read_only_volumes = {
     '/srv/shared/data': '/home/data_scientist/data',
     '/shared/accy570-fa16': '/home/data_scientist/accy570-fa16_RO',
-    '/shared/accy571-fa16': '/home/data_scientist/accy571-fa16_RO',
-    '/shared/outbound': '{{exchange_directory}}/accy/outbound'
+    '/shared/accy571-fa16': '/home/data_scientist/accy571-fa16_RO'
 }
 c.SwarmSpawner.singleuser = "data_scientist"
 c.SwarmSpawner.hostname = "jupyterhub.datascience.business.illinois.edu"

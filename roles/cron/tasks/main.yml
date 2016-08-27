@@ -14,6 +14,11 @@
   tags:
   - cron
 
+- name: copy student list
+  template: src=studentlist.j2 dest=/srv/cron/studentlist
+  tags:
+  - cron
+
 - name: copy Dockerfile for jupyterhub
   copy: src=Dockerfile dest=/srv/cron/Dockerfile
   tags:

@@ -11,6 +11,7 @@ RUN apt-get update && \
 
 ADD crontab /etc/cron.d/crontab
 ADD release_assignment.py /tmp/release_assignment.py
+ADD studentlist /tmp/studentlist
 RUN chmod +x /tmp/release_assignment.py
 
 RUN chmod 0644 /etc/cron.d/crontab

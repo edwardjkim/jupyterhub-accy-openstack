@@ -11,7 +11,7 @@ class ReleaseAssignment(object):
         self.course_id = 'accy'
         self.export_root = '/export'
         self.dir_name = dir_name
-        self.student_list = '/srv/jupyterhub_users/studentlist'
+        self.student_list = 'studentlist'
 
     @property
     def hw_dir(self):
@@ -67,11 +67,11 @@ class ReleaseAssignment(object):
             for student in self.students:
                 target_path = os.path.join(
                     self.export_root, 'exchange', student,
-                    self.course_id, 'outbound'
+                    self.course_id, 'outbound', assignment
                 )
                 shutil.copytree(self.hw_dir, target_path)
                 sys.stdout.write(
-                    "Released assignments from {}\n".format(self.hw_dir)
+                "Released assignments for {} from {}\n".format(student, self.hw_dir)
                 )
         else:
             raise RuntimeError("Not ready yet.")
@@ -94,3 +94,4 @@ if __name__ == '__main__':
         sys.exit(1)
 
     main(arg1, arg2)
+

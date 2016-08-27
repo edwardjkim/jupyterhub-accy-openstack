@@ -23,9 +23,6 @@
 - name: create the userlist
   template: src=userlist.j2 dest=/srv/jupyterhub_users/userlist
 
-- name: create the studentlist
-  template: src=studentlist.j2 dest=/srv/jupyterhub_users/studentlist
-
 - name: copy the home jinja template
   copy: src=home.html dest=/srv/jupyterhub/home.html
 

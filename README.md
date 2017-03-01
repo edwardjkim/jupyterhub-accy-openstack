@@ -226,6 +226,17 @@ Use the key to define the `gpg_key` and `gpg_pass` variables in `vars.yml`.
 
 ## Deploy
 
+If you specified `ansible_host=root` in `inventory`, you need to be able to log into the VM as root.
+If you see the following message,
+
+```shell
+ubuntu@deploy:~/jupyterhub-accounting$ ssh root@<VM IP address>
+Please login as the user "centos" rather than the user "root".
+```
+
+edit the `/root/.ssh/authorized_keys` file in the node VM and remove everything that comes before `ssh-keys`.
+
+
 ```shell
 $ ./script/deploy
 ```

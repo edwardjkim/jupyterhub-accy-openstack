@@ -177,6 +177,11 @@ Don't forget to edit the `host_vars` files.
 $ cp host_vars/example host_vars/jupyterhub_host
 $ vim host_vars/jupyterhub_host
 ```
+
+You can also use the `script/assemble_certs` script to automatically copy-paste the generated
+certs and keys into `host_vars` files. Open up `script/aseemble_certs` in a text editor, modify
+the `name_map` dictionary if necessary, and run `./script/aseemble_certs`.
+
 ## Encrypt with ansible-vault
 
 Some files, such as SSL certificates and `vars.yml`, should not be stored in plain text.

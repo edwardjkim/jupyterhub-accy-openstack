@@ -12,7 +12,7 @@
   copy: src=docker.repo dest=/etc/yum.repos.d/ owner=root group=root mode=0644
 
 - name: install docker engine
-  yum: name=docker-engine-1.11.* state=present
+  yum: name=docker-engine-1.13.1 state=present
 
 - name: create docker TLS directory
   file: path=/root/.docker state=directory group=root owner=root mode=0700
@@ -28,7 +28,7 @@
       to: /root/.docker/key.pem
 
 - name: docker-py
-  pip: name=docker-py state=present version=1.8
+  pip: name=docker state=present version=2.3.0
 
 - name: stop running docker containers
   shell: docker stop $(docker ps -a -q) || true
@@ -40,7 +40,7 @@
   cron: name="docker cleanup" minute=15 user="root" job="/usr/bin/docker rmi $(/usr/bin/docker images -q --filter 'dangling=true')"
 
 - name: install docker-compose
-  shell: curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  shell: curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 
 - name: make docker-compose executable
   file: path=/usr/local/bin/docker-compose mode="u+x"
@@ -55,7 +55,7 @@
   file: path=/lib/systemd/system/docker.service.d state=directory
 
 - name: copy systemd configuration file
-  copy: src=docker-host.conf dest=/lib/systemd/system/docker.service.d/docker-host.conf
+  template: src=docker-host.conf.j2 dest=/lib/systemd/system/docker.service.d/docker-host.conf
 
 - name: stop docker daemon
   service: name=docker state=stopped

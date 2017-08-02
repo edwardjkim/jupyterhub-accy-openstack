@@ -38,14 +38,14 @@
   tags:
   - nfs
 
-- hosts:
-  - jupyterhub_host
-  vars_files:
-  - vars.yml
-  roles:
-  - duplicity
-  tags:
-  - duplicity
+#- hosts:
+#  - jupyterhub_host
+#  vars_files:
+#  - vars.yml
+#  roles:
+#  - duplicity
+#  tags:
+#  - duplicity
 
 - hosts:
   - jupyterhub_host
@@ -53,6 +53,8 @@
   - vars.yml
   roles:
   - consul_server
+  tags:
+  - consul
 
 - hosts:
   - jupyterhub_nodes
@@ -60,6 +62,8 @@
   - vars.yml
   roles:
   - consul_client
+  tags:
+  - consul
 
 - hosts:
   - jupyterhub_nodes

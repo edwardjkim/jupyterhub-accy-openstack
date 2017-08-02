@@ -157,7 +157,7 @@ $ mkdir certificates
 
 $ touch certificates/password
 $ chmod 600 certificates/password
-$ cat /dev/random | head -c 128 | base64 > certificates/password
+$ cat /dev/urandom | head -c 128 | base64 > certificates/password
 
 $ KEYMASTER="sudo docker run --rm -v $(pwd)/certificates/:/certificates/ cloudpipe/keymaster"
 
@@ -169,6 +169,22 @@ Then, to generate a keypair for a server:
 ```shell
 $ ${KEYMASTER} signed-keypair -n server1 -h server1.website.com -p both -s IP:192.168.0.1
 ```
+
+For example, if you have the following in `inventory`:
+
+```
+jupyterhub_host ansible_user=root ansible_host=123.456.78.90 private_ip=123.456.78.90
+```
+
+run
+
+```shell
+$ ${KEYMASTER} signed-keypair -n jupyterhub_host -h 123.456.78.90 -p both -s IP:123.456.78.90
+```
+
+This generate pem files in certificates directory.
+Use `ca.pem`, `jupyterhub_host-cert.pem`, and `jupyterhub_host-key.pem` to fill in the `docker_ca_cert`, `docker_tls_cert`, and `docker_tls_key` fields in the `host_vars` files.
+You'll need to generate keypairs for the hub server and for each of the node servers.
 
 You'll need to generate keypairs for the hub server and for each of the node servers.
 Don't forget to edit the `host_vars` files.

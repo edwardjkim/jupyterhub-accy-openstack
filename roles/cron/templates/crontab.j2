@@ -1,8 +1,16 @@
 TZ=America/Chicago
-*/20 * * * * root cd /export/shared/accy570-fa16 && /usr/bin/git pull origin master 2>&1 | ts "\%F \%T" >> /var/log/cron.log
-*/20 * * * * root cd /export/shared/accy571-fa16 && /usr/bin/git pull origin master 2>&1 | ts "\%F \%T" >> /var/log/cron.log
-01 18 * * 2 root tar cvzf /export/assignments.$(date +\%Y\%m\%d\%H\%M\%S).tar.gz /export/exchange/*/accy/inbound 2>&1 | ts "\%F \%T" >> /var/log/cron.log
-01 18 * * 5 root tar cvzf /export/assignments.$(date +\%Y\%m\%d\%H\%M\%S).tar.gz /export/exchange/*/accy/inbound 2>&1 | ts "\%F \%T" >> /var/log/cron.log
-01 09 31 08 * root cd /tmp && ./release_assignment.py /export/shared/accy570-fa16/Week2 accy570_hw2_due_9_06 2>&1 | ts "\%F \%T" >> /var/log/cron.log
+# git auto-pull
+*/1 * * * * root cd /export/shared/accy570/readonly && /usr/bin/git pull origin master 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
+# release week 2 notebooks to students
+00 12 2 9 6 root /export/release_to_students.sh 3 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
+# we have two modules. wait one minute just in case.
+01 12 2 9 6 root /export/release_to_students.sh 4 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
+# week 1 assignments and projects
+05 18 4 9 * root /export/collect.sh 1 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
+05 18 5 9 * root /export/collect.sh 2 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
+# release week 2 notebooks to students
+00 12 9 9 6 root /export/release_to_students.sh 5 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
+# we have two modules. wait one minute just in case.
+01 12 9 9 6 root /export/release_to_students.sh 6 2>&1 | /usr/bin/ts "\%F \%T" >> /var/log/cron.log
 # An empty line is required at the end of this file for a valid cron file.
 

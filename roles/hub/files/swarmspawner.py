@@ -24,7 +24,7 @@ class SwarmSpawner(DockerSpawner):
 
     root_dir = Unicode('/export', config=True)
 
-    course_id = Unicode('info490', config=True)
+    course_id = Unicode('accy', config=True)
 
     @gen.coroutine
     def lookup_node_name(self):

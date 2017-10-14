@@ -35,47 +35,96 @@
 - name: create /mnt/volume/exchange
   file: path=/mnt/volume/exchange state=directory
 
-- name: create home directories
-  file: path=/mnt/volume/home/{{ item }} state=directory group=100 owner=1000 recurse=yes
-  with_items:
-  - "{{ jupyterhub_admins }}"
-  - "{{ jupyterhub_users }}"
-  tags:
-  - add_users
+#- name: create home directories
+#  file: path=/mnt/volume/home/{{ item }} state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy570 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy570 state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy570 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy570/assignments state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy570 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy570/data state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy570 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy570/lessons state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy570 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy570/project state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy571 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy571 state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy571 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy571/assignments state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy571 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy571/data state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy571 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy571/lessons state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create home/accy571 directories
+#  file: path=/mnt/volume/home/{{ item }}/accy571/project state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
 
-- name: create exchange directories
-  file: path=/mnt/volume/exchange/{{ item }}/accy state=directory group=100 owner=1000 recurse=yes
-  with_items:
-  - "{{ jupyterhub_admins }}"
-  - "{{ jupyterhub_users }}"
-  tags:
-  - add_users
+# There are no assignments in ACCY courses in Fall 2017 (only projects).
+# I'm commenting out (rather than deleting) the setup for exchange directories
+# so Assignments tab can be installed later if necessary.
+#
+#- name: create exchange directories
+#  file: path=/mnt/volume/exchange/{{ item }}/accy state=directory group=100 owner=1000
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create exchange inbound directories
+#  file: path=/mnt/volume/exchange/{{ item }}/accy/inbound state=directory group=root owner=root mode=0733
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
+#
+#- name: create exchange outbound directories
+#  file: path=/mnt/volume/exchange/{{ item }}/accy/outbound state=directory group=root owner=root mode=0755
+#  with_items:
+#  - "{{ jupyterhub_admins|lower }}"
+#  - "{{ jupyterhub_users|lower }}"
 
-- name: create exchange/inbound directories
-  file: path=/mnt/volume/exchange/{{ item }}/accy/inbound state=directory group=root owner=root mode=0733 recurse=yes
-  with_items:
-  - "{{ jupyterhub_admins }}"
-  - "{{ jupyterhub_users }}"
-  tags:
-  - add_users
-
-- name: create exchange/outbound directories
-  file: path=/mnt/volume/exchange/{{ item }}/accy/outbound state=directory group=root owner=root mode=0755 recurse=yes
-  with_items:
-  - "{{ jupyterhub_admins }}"
-  - "{{ jupyterhub_users }}"
-  tags:
-  - add_users
-
-- name: create shared directory
-  file: path=/mnt/volume/shared state=directory group=root owner=root recurse=yes
-
-- name: git clone accy570 repo
-  git: repo=https://github.com/ui-datascience/accy570-fa16 dest=/mnt/volume/shared/accy570-fa16
-
-- name: git clone accy571 repo
-  git: repo=https://github.com/ui-datascience/accy571-fa16 dest=/mnt/volume/shared/accy571-fa16
+#- name: create shared directory
+#  file: path=/mnt/volume/shared state=directory group=root owner=root recurse=yes
 
 - name: start nfs-server
   service: name=nfs state=started
-

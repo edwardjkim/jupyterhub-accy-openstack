@@ -2,9 +2,13 @@ FROM edwardjkim/httpd
 
 MAINTAINER Edward J Kim <edward.junhyung.kim@gmail.com>
 
-RUN yum -y update && \
-    wget -P /etc/yum.repos.d \
-        http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo && \
+RUN yum -y update
+RUN wget -P /etc/yum.repos.d \
+#        http://download.opensuse.org/repositories/security:/shibboleth/RHEL_7/security:shibboleth.repo && \
+        http://ftp5.gwdg.de/pub/opensuse/repositories/security:/shibboleth/CentOS_7/security%3Ashibboleth.repo && \
+    cat /etc/yum.repos.d/security\:shibboleth.repo | \
+        sed -i 's/download.opensuse.org/ftp5.gwdg.de\/pub\/opensuse/g' /etc/yum.repos.d/security\:shibboleth.repo && \
+    cat /etc/yum.repos.d/security\:shibboleth.repo && \
     yum -y install shibboleth.x86_64 libcurl-openssl libcurl-openssl-devel && \
     chmod +x /etc/shibboleth/shibd-redhat && \
     # http://esoterica.itcs.illinois.edu/linux/packages/uiuc-intermediates.html

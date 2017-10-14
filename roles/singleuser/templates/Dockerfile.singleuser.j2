@@ -1,4 +1,4 @@
-FROM lcdm/info490
+FROM lcdm/accy
 
 USER root
 
@@ -9,4 +9,5 @@ CMD ["start-singleuser.sh"]
 USER $NB_USER
 ENV TZ America/Chicago
 
+ENV PYTHONPATH /home/$NB_USER/.accy/rubric:$PYTHONPATH
 ENV NLTK_DATA /home/$NB_USER/data/nltk_data

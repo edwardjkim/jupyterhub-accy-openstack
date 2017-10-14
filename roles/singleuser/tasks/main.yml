@@ -8,8 +8,8 @@
 - name: copy nbgrader_config.py
   copy: src=nbgrader_config.py dest=/srv/singleuser/nbgrader_config.py
 
-- name: pull lcdm/info490 image
-  shell: docker pull lcdm/info490:latest
+- name: pull lcdm/accy image
+  shell: docker pull lcdm/accy:latest
 
 - name: build singleuser image
-  shell: docker build -t singleuser --no-cache /srv/singleuser
+  shell: docker build -t singleuser /srv/singleuser
